@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    ansible_spec (0.2.14)
+    ansible_spec (0.2.15)
       hostlist_expression
       oj
       serverspec (>= 2.0.0)
@@ -22,11 +22,11 @@ GEM
     multi_json (1.12.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (3.1.1)
+    net-ssh (3.2.0)
     net-telnet (0.1.1)
     nori (2.6.0)
-    oj (2.15.0)
-    rake (11.1.2)
+    oj (2.16.0)
+    rake (11.2.2)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -50,7 +50,7 @@ GEM
       rspec-its
       specinfra (~> 2.53)
     sfl (2.2)
-    specinfra (2.57.5)
+    specinfra (2.59.1)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
