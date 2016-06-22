@@ -1,0 +1,6 @@
+---
+- name: copy status.conf
+  copy:
+    src: status.conf
+    dest: /etc/nginx/conf.d/status.conf
+  notify: reload nginx

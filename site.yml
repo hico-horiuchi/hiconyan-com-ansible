@@ -1,0 +1,40 @@
+---
+- name: common
+  hosts:
+    - conoha
+  roles:
+    - common
+  tags:
+    - common
+
+- name: docker
+  hosts:
+    - conoha
+  roles:
+    - docker
+  tags:
+    - docker
+
+- name: dokku
+  hosts:
+    - conoha
+  roles:
+    - dokku
+  tags:
+    - dokku
+
+- name: redis
+  hosts:
+    - conoha
+  roles:
+    - redis
+  tags:
+    - redis
+
+- name: mackerel
+  hosts:
+    - conoha
+  roles:
+    - mackerel
+  tags:
+    - mackerel

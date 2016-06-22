@@ -1,0 +1,13 @@
+---
+- include: prerequisites.yml
+  become: yes
+
+- include: install.yml
+  become: yes
+
+- include: plugin.yml
+  become: yes
+  with_items: '{{ plugins }}'
+
+- include: nginx.yml
+  become: yes

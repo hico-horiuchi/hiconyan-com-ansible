@@ -1,0 +1,15 @@
+---
+- name: add new gpg key
+  apt_key:
+    url: https://packagecloud.io/gpg.key
+
+- name: create dokku.list
+  template:
+    src: dokku.list.j2
+    dest: /etc/apt/sources.list.d/dokku.list
+  register: dokku_list
+
+- name: update apt package index
+  apt:
+    update_cache: yes
+  when: dokku_list|changed

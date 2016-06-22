@@ -1,0 +1,8 @@
+deb {{ apt_ubuntu_uri }} {{ ansible_distribution_release }} {{ apt_ubuntu_components | join(' ') }}
+deb-src {{ apt_ubuntu_uri }} {{ ansible_distribution_release }} {{ apt_ubuntu_components | join(' ') }}
+deb {{ apt_ubuntu_uri }} {{ ansible_distribution_release }}-updates {{ apt_ubuntu_components | join(' ') }}
+deb-src {{ apt_ubuntu_uri }} {{ ansible_distribution_release }}-updates {{ apt_ubuntu_components | join(' ') }}
+#deb {{ apt_ubuntu_uri }} {{ ansible_distribution_release }}-backports {{ apt_ubuntu_components | join(' ') }}
+#deb-src {{ apt_ubuntu_uri }} {{ ansible_distribution_release }}-backports {{ apt_ubuntu_components | join(' ') }}
+deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security {{ apt_ubuntu_components | join(' ') }}
+deb-src http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security {{ apt_ubuntu_components | join(' ') }}

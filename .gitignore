@@ -1,0 +1,9 @@
+*#*
+*~
+*.retry
+.*.swp
+.DS_Store
+/.bundle
+/hosts
+/vendor/bin
+/vendor/bundler

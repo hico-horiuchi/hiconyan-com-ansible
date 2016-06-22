@@ -1,0 +1,8 @@
+---
+plugins:
+  - name: letsencrypt
+    url: https://github.com/dokku/dokku-letsencrypt.git
+  - name: maintenance
+    url: https://github.com/dokku/dokku-maintenance.git
+  - name: slack
+    url: https://github.com/ribot/dokku-slack.git

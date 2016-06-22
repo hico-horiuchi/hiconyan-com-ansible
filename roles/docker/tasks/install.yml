@@ -1,0 +1,10 @@
+---
+- name: install docker
+  apt:
+    name: docker-engine
+
+- name: start and enable docker daemon
+  service:
+    name: docker
+    state: started
+    enabled: yes

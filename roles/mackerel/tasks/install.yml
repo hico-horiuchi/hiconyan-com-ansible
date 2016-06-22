@@ -1,0 +1,8 @@
+---
+- name: install mackerel-agent
+  apt:
+    name: mackerel-agent
+
+- name: install mackerel-agent-plugins
+  apt:
+    name: mackerel-agent-plugins

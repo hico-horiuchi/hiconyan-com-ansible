@@ -1,0 +1,7 @@
+---
+apt_ubuntu_uri: 'http://ftp.jaist.ac.jp/pub/Linux/ubuntu/'
+apt_ubuntu_components:
+  - main
+  - restricted
+  - universe
+  - multiverse

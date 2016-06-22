@@ -1,0 +1,20 @@
+---
+- include_vars: secret.yml
+
+- name: create configuration directory
+  file:
+    path: /etc/mackerel-agent/conf.d
+    state: directory
+
+- name: create mackerel-agent.conf
+  template:
+    src: mackerel-agent.conf.j2
+    dest: /etc/mackerel-agent/mackerel-agent.conf
+  notify: restart mackerel-agent
+
+- name: copy plugin configures
+  copy:
+    src: '{{ item }}.conf'
+    dest: '/etc/mackerel-agent/conf.d/{{ item }}.conf'
+  with_items: '{{ plugins }}'
+  notify: restart mackerel-agent

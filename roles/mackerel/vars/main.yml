@@ -1,0 +1,7 @@
+---
+display_name: hiconyan.com
+roles:
+  - 'Dokku:app'
+plugins:
+  - docker
+  - nginx

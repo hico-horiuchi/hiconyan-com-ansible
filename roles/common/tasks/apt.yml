@@ -1,0 +1,8 @@
+---
+- name: copy source.list
+  template:
+    src: source.list.j2
+    dest: /etc/apt/sources.list
+
+- name: update all packages
+  apt: update_cache=yes upgrade=dist

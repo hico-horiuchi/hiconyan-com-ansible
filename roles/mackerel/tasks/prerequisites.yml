@@ -1,0 +1,15 @@
+---
+- name: add new gpg key
+  apt_key:
+    url: https://mackerel.io/assets/files/GPG-KEY-mackerel
+
+- name: copy mackerel.list
+  copy:
+    src: mackerel.list
+    dest: /etc/apt/sources.list.d/mackerel.list
+  register: mackerel_list
+
+- name: update apt package index
+  apt:
+    update_cache: yes
+  when: mackerel_list|changed

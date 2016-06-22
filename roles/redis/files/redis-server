@@ -1,0 +1,4 @@
+[Redis]
+title=Key-Value Database
+description=In-memory data structure store, used as database, cache and message broker.
+ports=6379/tcp

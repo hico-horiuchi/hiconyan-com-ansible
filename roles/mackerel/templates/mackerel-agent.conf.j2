@@ -1,0 +1,11 @@
+apikey = "{{ apikey }}"
+pidfile = "/var/run/mackerel-agent.pid"
+root = "/var/lib/mackerel-agent"
+verbose = false
+display_name = "{{ display_name }}"
+roles = {{ roles | to_json }}
+include = "/etc/mackerel-agent/conf.d/*.conf"
+
+[host_status]
+on_start = "working"
+on_stop  = "poweroff"

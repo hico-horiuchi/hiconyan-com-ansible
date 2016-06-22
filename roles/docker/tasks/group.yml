@@ -1,0 +1,10 @@
+---
+- name: create docker group
+  group:
+    name: docker
+
+- name: add your user to docker group
+  user:
+    name: '{{ ansible_env.USER }}'
+    groups: docker
+    append: yes
