@@ -5,7 +5,7 @@ describe package('dokku') do
 end
 
 describe command('dokku plugin | grep dokku\ core | wc -l') do
-  its(:stdout) { should eq "22\n" }
+  its(:stdout) { should eq "23\n" }
   its(:exit_status) { should eq 0 }
 end
 

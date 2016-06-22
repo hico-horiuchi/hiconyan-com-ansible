@@ -9,7 +9,6 @@ end
 
 describe file('/etc/mackerel-agent/mackerel-agent.conf') do
   it { should be_file }
-  it { should contain "apikey = \"#{property['apikey']}\"" }
   it { should contain "display_name = \"#{property['display_name']}\"" }
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
