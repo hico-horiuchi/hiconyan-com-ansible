@@ -2,15 +2,15 @@
 - include_vars: secret.yml
 
 - name: bind 0.0.0.0
-  lineinfile:
+  replace:
     dest: /etc/redis/redis.conf
-    regexp: '^bind 127\.0\.0\.1$'
-    line: 'bind 0.0.0.0'
+    regexp: '^bind\s+127\.0\.0\.1$'
+    replace: 'bind 0.0.0.0'
   notify: restart redis-server
 
 - name: set password
-  lineinfile:
+  replace:
     dest: /etc/redis/redis.conf
-    regexp: '^# requirepass foobared$'
-    line: 'requirepass {{ password }}'
+    regexp: '^#\*requirepass\s+.+$'
+    replace: 'requirepass {{ redis_password }}'
   notify: restart redis-server

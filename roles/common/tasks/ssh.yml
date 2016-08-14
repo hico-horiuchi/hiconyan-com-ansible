@@ -1,0 +1,12 @@
+---
+- name: disable password authentication
+  replace:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#\s*PasswordAuthentication\s+(yes|no)$'
+    replace: 'PasswordAuthentication no'
+  notify: restart ssh
+
+- name: allow openssh
+  ufw:
+    rule: allow
+    name: OpenSSH

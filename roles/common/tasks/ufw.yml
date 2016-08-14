@@ -1,0 +1,5 @@
+---
+- name: enable ufw and deny everything
+  ufw:
+    policy: deny
+    state: enabled

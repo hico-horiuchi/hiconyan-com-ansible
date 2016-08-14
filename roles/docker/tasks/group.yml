@@ -8,3 +8,4 @@
     name: '{{ ansible_env.USER }}'
     groups: docker
     append: yes
+  when: ansible_env.USER != 'root'

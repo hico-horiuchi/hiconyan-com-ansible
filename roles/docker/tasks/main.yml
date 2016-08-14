@@ -1,12 +1,16 @@
 ---
 - include: prerequisites.yml
   become: yes
+  tags: docker_prerequisites
 
 - include: install.yml
   become: yes
+  tags: docker_install
 
 - include: python.yml
   become: yes
+  tags: docker_python
 
 - include: group.yml
   become: yes
+  tags: docker_group

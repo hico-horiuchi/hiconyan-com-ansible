@@ -2,6 +2,7 @@
 - name: install docker
   apt:
     name: docker-engine
+  notify: restart host
 
 - name: start and enable docker daemon
   service:

@@ -1,9 +1,9 @@
-apikey = "{{ apikey }}"
+apikey = "{{ mackerel_apikey }}"
 pidfile = "/var/run/mackerel-agent.pid"
 root = "/var/lib/mackerel-agent"
 verbose = false
-display_name = "{{ display_name }}"
-roles = {{ roles | to_json }}
+display_name = "{{ mackerel_display_name }}"
+roles = {{ mackerel_roles | to_json }}
 include = "/etc/mackerel-agent/conf.d/*.conf"
 
 [host_status]

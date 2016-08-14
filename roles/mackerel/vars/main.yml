@@ -1,7 +1,7 @@
 ---
-display_name: hiconyan.com
-roles:
+mackerel_display_name: hiconyan.com
+mackerel_roles:
   - 'Dokku:app'
-plugins:
+mackerel_plugins:
   - docker
   - nginx

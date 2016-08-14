@@ -1,6 +1,8 @@
 ---
 - include: install.yml
   become: yes
+  tags: redis_install
 
 - include: config.yml
   become: yes
+  tags: redis_config

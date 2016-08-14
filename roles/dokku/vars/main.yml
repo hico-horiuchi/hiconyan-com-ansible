@@ -1,5 +1,5 @@
 ---
-plugins:
+dokku_plugins:
   - name: letsencrypt
     url: https://github.com/dokku/dokku-letsencrypt.git
   - name: maintenance

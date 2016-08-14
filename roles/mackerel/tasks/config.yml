@@ -16,5 +16,5 @@
   copy:
     src: '{{ item }}.conf'
     dest: '/etc/mackerel-agent/conf.d/{{ item }}.conf'
-  with_items: '{{ plugins }}'
+  with_items: '{{ mackerel_plugins }}'
   notify: restart mackerel-agent

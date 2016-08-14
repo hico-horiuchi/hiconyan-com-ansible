@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ansible-vault (0.2.1)
+      oroku_saki (~> 1.1)
     ansible_spec (0.2.15)
       hostlist_expression
       oj
@@ -8,13 +10,13 @@ GEM
       winrm
     builder (3.2.2)
     diff-lcs (1.2.5)
-    ffi (1.9.10)
+    ffi (1.9.14)
     gssapi (1.2.0)
       ffi (>= 1.0.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
     hostlist_expression (0.2.1)
-    httpclient (2.8.0)
+    httpclient (2.8.1)
     little-plugger (1.1.4)
     logging (2.1.0)
       little-plugger (~> 1.1)
@@ -25,24 +27,25 @@ GEM
     net-ssh (3.2.0)
     net-telnet (0.1.1)
     nori (2.6.0)
-    oj (2.16.0)
+    oj (2.17.1)
+    oroku_saki (1.1.1)
     rake (11.2.2)
-    rspec (3.4.0)
-      rspec-core (~> 3.4.0)
-      rspec-expectations (~> 3.4.0)
-      rspec-mocks (~> 3.4.0)
-    rspec-core (3.4.4)
-      rspec-support (~> 3.4.0)
-    rspec-expectations (3.4.0)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.2)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.4.0)
+      rspec-support (~> 3.5.0)
     rspec-its (1.2.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.4.1)
+    rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.4.0)
-    rspec-support (3.4.1)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
     rubyntlm (0.6.0)
     serverspec (2.36.0)
       multi_json
@@ -50,7 +53,7 @@ GEM
       rspec-its
       specinfra (~> 2.53)
     sfl (2.2)
-    specinfra (2.59.1)
+    specinfra (2.60.4)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
@@ -68,8 +71,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ansible-vault
   ansible_spec
   rake
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

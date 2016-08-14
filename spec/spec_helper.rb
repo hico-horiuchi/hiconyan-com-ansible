@@ -1,87 +1,46 @@
-require 'serverspec'
-require 'net/ssh'
+require 'ansible/vault'
 require 'ansible_spec'
-require 'winrm'
+require 'net/ssh'
+require 'serverspec'
+require 'yaml'
 
-#
-# Set ansible variables to serverspec property
-#
 host = ENV['TARGET_HOST']
-hosts = ENV["TARGET_HOSTS"]
-
+hosts = ENV['TARGET_HOSTS']
 group_idx = ENV['TARGET_GROUP_INDEX'].to_i
-vars = AnsibleSpec.get_variables(host, group_idx,hosts)
-set_property vars
 
-connection = ENV['TARGET_CONNECTION']
-
-if connection != 'winrm'
-#
-# OS type: UN*X
-#
-  set :backend, :ssh
-
-  if ENV['ASK_SUDO_PASSWORD']
-    begin
-      require 'highline/import'
-    rescue LoadError
-      fail "highline is not available. Try installing it."
-    end
-    set :sudo_password, ask("Enter sudo password: ") { |q| q.echo = false }
-  else
-    set :sudo_password, ENV['SUDO_PASSWORD']
+if ENV['ASK_SUDO_PASSWORD']
+  begin
+    require 'highline/import'
+  rescue LoadError
+    fail 'highline is not available. Try installing it.'
   end
-
-  options = Net::SSH::Config.for(host)
-
-  options[:user] ||= ENV['TARGET_USER']
-  options[:port] ||= ENV['TARGET_PORT']
-  options[:keys] ||= ENV['TARGET_PRIVATE_KEY']
-
-  set :host,        options[:host_name] || host
-  set :ssh_options, options
-
-  # Disable sudo
-  # set :disable_sudo, true
-
-
-  # Set environment variables
-  # set :env, :LANG => 'C', :LC_MESSAGES => 'C'
-
-  # Set PATH
-  # set :path, '/sbin:/usr/local/sbin:$PATH'
+  set :sudo_password, ask('Enter sudo password: ') { |q| q.echo = false }
 else
-#
-# OS type: Windows
-#
-  set :backend, :winrm
-  set :os, :family => 'windows'
-
-  user = ENV['TARGET_USER']
-  port = ENV['TARGET_PORT']
-  pass = ENV['TARGET_PASSWORD']
-
-  if user.nil?
-    begin
-      require 'highline/import'
-    rescue LoadError
-      fail "highline is not available. Try installing it."
-    end
-    user = ask("\nEnter #{host}'s login user: ") { |q| q.echo = true }
-  end
-  if pass.nil?
-    begin
-      require 'highline/import'
-    rescue LoadError
-      fail "highline is not available. Try installing it."
-    end
-    pass = ask("\nEnter #{user}@#{host}'s login password: ") { |q| q.echo = false }
-  end
-
-  endpoint = "http://#{host}:#{port}/wsman"
-
-  winrm = ::WinRM::WinRMWebService.new(endpoint, :ssl, :user => user, :pass => pass, :basic_auth_only => true)
-  winrm.set_timeout 300 # 5 minutes max timeout for any operation
-  Specinfra.configuration.winrm = winrm
-
+  set :sudo_password, ENV['SUDO_PASSWORD']
 end
+
+options = Net::SSH::Config.for(host)
+options[:user] ||= ENV['TARGET_USER']
+options[:port] ||= ENV['TARGET_PORT']
+options[:keys] ||= ENV['TARGET_PRIVATE_KEY']
+
+set :backend,     :ssh
+set :host,        options[:host_name] || host
+set :ssh_options, options
+
+vars = AnsibleSpec.get_variables(host, group_idx, hosts)
+property = AnsibleSpec.get_properties[group_idx]
+password = ''
+
+File.open("#{ENV['HOME']}/.vault_password", 'r') do |f|
+  password = f.read.chomp
+end
+
+property['roles'].each do |role|
+  secret = "roles/#{role}/vars/secret.yml"
+  if File.exist?(secret)
+    vars.merge! YAML.load(Ansible::Vault.read(path: secret, password: password))
+  end
+end
+
+set_property vars
