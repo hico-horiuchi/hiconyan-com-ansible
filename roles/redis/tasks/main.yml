@@ -1,8 +1,12 @@
 ---
-- include: install.yml
-  become: yes
-  tags: redis_install
-
 - include: config.yml
   become: yes
   tags: redis_config
+
+- include: container.yml
+  become: yes
+  tags: redis_container
+
+- include: ufw.yml
+  become: yes
+  tags: redis_ufw

@@ -1,16 +1,16 @@
 ---
 - include_vars: secret.yml
 
-- name: bind 0.0.0.0
-  replace:
-    dest: /etc/redis/redis.conf
-    regexp: '^bind\s+127\.0\.0\.1$'
-    replace: 'bind 0.0.0.0'
-  notify: restart redis-server
+- name: create redis directory
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /etc/redis
+    - /var/redis
 
-- name: set password
-  replace:
+- name: create redis.conf
+  template:
+    src: redis.conf.j2
     dest: /etc/redis/redis.conf
-    regexp: '^#\*requirepass\s+.+$'
-    replace: 'requirepass {{ redis_password }}'
-  notify: restart redis-server
+  notify: restart redis container
