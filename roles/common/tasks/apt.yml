@@ -6,3 +6,12 @@
 
 - name: update all packages
   apt: update_cache=yes upgrade=dist
+  register: package_updated
+
+- name: remove unused packages
+  command: apt-get autoremove
+  when: package_updated|changed
+
+- name: cleanup local caches
+  command: apt-get clean
+  when: package_updated|changed
