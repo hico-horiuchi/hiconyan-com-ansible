@@ -16,6 +16,6 @@ describe file('/etc/redis/redis.conf') do
   it { should be_grouped_into 'root' }
 end
 
-describe command("redis-cli -a #{property['redis_password']} INFO") do
+describe command("docker exec redis redis-cli -a #{property['redis_password']} INFO") do
   its(:exit_status) { should eq 0 }
 end

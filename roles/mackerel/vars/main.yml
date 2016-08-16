@@ -5,3 +5,4 @@ mackerel_roles:
 mackerel_plugins:
   - docker
   - nginx
+  - redis

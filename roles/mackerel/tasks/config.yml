@@ -12,9 +12,9 @@
     dest: /etc/mackerel-agent/mackerel-agent.conf
   notify: restart mackerel-agent
 
-- name: copy plugin configures
-  copy:
-    src: '{{ item }}.conf'
+- name: create plugin configures
+  template:
+    src: '{{ item }}.conf.j2'
     dest: '/etc/mackerel-agent/conf.d/{{ item }}.conf'
   with_items: '{{ mackerel_plugins }}'
   notify: restart mackerel-agent

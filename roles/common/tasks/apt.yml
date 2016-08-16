@@ -5,13 +5,12 @@
     dest: /etc/apt/sources.list
 
 - name: update all packages
-  apt: update_cache=yes upgrade=dist
+  apt:
+    upgrade: dist
+    update_cache: yes
+    autoremove: yes
   register: package_updated
 
-- name: remove unused packages
-  command: apt-get autoremove
-  when: package_updated|changed
-
-- name: cleanup local caches
+- name: cleanup package caches
   command: apt-get clean
   when: package_updated|changed

@@ -27,7 +27,6 @@ property['mackerel_plugins'].each do |item|
   end
 end
 
-describe service('nginx') do
-  it { should be_enabled }
-  it { should be_running }
+describe file('/etc/mackerel-agent/conf.d/redis.conf') do
+  it { should contain "-password #{property['redis_password']}" }
 end
