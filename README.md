@@ -10,6 +10,7 @@
 
     $ cd hiconyan-com-ansible
     $ cp hosts_samples/hosts.conoha hosts
+    $ vi ~/.vault_password
     $ ansible-playbook -i hosts site.yml
 
 #### Serverspec

@@ -9,6 +9,6 @@ describe file('/etc/ufw/applications.d/redis-server') do
 end
 
 describe command('ufw status | grep Redis') do
-  its(:stdout) { should match /Redis\s+ALLOW\s+Anywhere/ }
+  its(:stdout) { should match /^Redis\s+ALLOW\s+Anywhere$/ }
   its(:exit_status) { should eq 0 }
 end

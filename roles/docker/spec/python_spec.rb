@@ -5,6 +5,6 @@ describe package('python-pip') do
 end
 
 describe command('pip list | grep docker-py') do
-  its(:stdout) { should match /^docker-py \([0-9.]+\)/ }
+  its(:stdout) { should match /^docker-py \([0-9.]+\)$/ }
   its(:exit_status) { should eq 0 }
 end
