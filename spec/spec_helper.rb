@@ -30,16 +30,22 @@ set :ssh_options, options
 
 vars = AnsibleSpec.get_variables(host, group_idx, hosts)
 property = AnsibleSpec.get_properties[group_idx]
-password = ''
+ansible_cfg = File.expand_path('../ansible.cfg', File.dirname(__FILE__))
+vault_password_file = ''
+vault_password = ''
 
-File.open("#{ENV['HOME']}/.vault_password", 'r') do |f|
-  password = f.read.chomp
+File.open(ansible_cfg, 'r') do |f|
+  vault_password_file = f.read.match(/^vault_password_file = (.+)$/)[1]
+end
+
+File.open(File.expand_path(vault_password_file), 'r') do |f|
+  vault_password = f.read.chomp
 end
 
 property['roles'].each do |role|
   secret = "roles/#{role}/vars/secret.yml"
   if File.exist?(secret)
-    vars.merge! YAML.load(Ansible::Vault.read(path: secret, password: password))
+    vars.merge! YAML.load(Ansible::Vault.read(path: secret, password: vault_password))
   end
 end
 

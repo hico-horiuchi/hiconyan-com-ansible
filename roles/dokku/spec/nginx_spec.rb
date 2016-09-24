@@ -21,6 +21,7 @@ describe command('ufw status | grep Nginx\ Full') do
   its(:exit_status) { should eq 0 }
 end
 
-describe port(80) do
+describe port(8080) do
   it { should be_listening.on('0.0.0.0').with('tcp') }
+  it { should be_listening.on('::').with('tcp6') }
 end
