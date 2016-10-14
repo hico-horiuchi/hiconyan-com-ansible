@@ -1,5 +1,10 @@
 ## hiconyan.com Ansible Playbooks
 
+#### Qiita
+
+- [ConoHa + DokkuでプライベートPaaS構築](http://qiita.com/hiconyan/items/e4c6de6c2466bd3880c4)
+- [Serverspecでansible-vaultの情報を使う](http://qiita.com/hiconyan/items/ea34da410a971bfa28ae)
+
 #### Preparations
 
     $ brew install ansible git
