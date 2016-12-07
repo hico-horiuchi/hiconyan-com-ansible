@@ -1,13 +1,13 @@
 ---
 - name: check {{ item.name }} plugin is installed
   shell: dokku plugin | grep {{ item.name }}
-  register: plugin_installed
-  failed_when: plugin_installed.rc != 0 and plugin_installed.rc != 1
+  register: check_plugin_is_installed
+  failed_when: check_plugin_is_installed.rc != 0 and check_plugin_is_installed.rc != 1
 
 - name: install {{ item.name }} plugin
   command: 'dokku plugin:install {{ item.url }}'
-  when: plugin_installed.rc == 1
+  when: check_plugin_is_installed.rc == 1
 
 - name: update {{ item.name }} plugin
   command: 'dokku plugin:update {{ item.name }}'
-  when: plugin_installed.rc == 0
+  when: check_plugin_is_installed.rc == 0

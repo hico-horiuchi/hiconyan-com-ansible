@@ -9,8 +9,8 @@
     upgrade: dist
     update_cache: yes
     autoremove: yes
-  register: package_updated
+  register: update_all_packages
 
 - name: cleanup package caches
   command: apt-get clean
-  when: package_updated|changed
+  when: update_all_packages|changed

@@ -7,9 +7,9 @@
   template:
     src: dokku.list.j2
     dest: /etc/apt/sources.list.d/dokku.list
-  register: dokku_list
+  register: create_dokku_list
 
 - name: update apt package index
   apt:
     update_cache: yes
-  when: dokku_list|changed
+  when: create_dokku_list|changed

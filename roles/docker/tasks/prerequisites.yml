@@ -1,7 +1,7 @@
 ---
 - name: get kernel release
   command: uname -r
-  register: uname_r
+  register: get_kernel_release
 
 - name: install apt-transport-https
   apt:
@@ -13,7 +13,7 @@
 
 - name: install recommended package
   apt:
-    name: linux-image-extra-{{ uname_r.stdout }}
+    name: linux-image-extra-{{ get_kernel_release.stdout }}
 
 - name: add new gpg key
   apt_key:
@@ -24,9 +24,9 @@
   template:
     src: docker.list.j2
     dest: /etc/apt/sources.list.d/docker.list
-  register: docker_list
+  register: create_docker_list
 
 - name: update apt package index
   apt:
     update_cache: yes
-  when: docker_list|changed
+  when: create_docker_list|changed

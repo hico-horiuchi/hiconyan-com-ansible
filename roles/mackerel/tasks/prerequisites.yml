@@ -7,9 +7,9 @@
   copy:
     src: mackerel.list
     dest: /etc/apt/sources.list.d/mackerel.list
-  register: mackerel_list
+  register: copy_mackerel_list
 
 - name: update apt package index
   apt:
     update_cache: yes
-  when: mackerel_list|changed
+  when: copy_mackerel_list|changed
