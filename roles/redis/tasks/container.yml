@@ -1,6 +1,6 @@
 ---
 - name: start redis container
-  docker:
+  docker_container:
     name: redis
     image: redis
     state: started
