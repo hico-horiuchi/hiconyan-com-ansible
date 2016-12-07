@@ -1,11 +1,10 @@
 ---
 - name: restart host
-  command: shutdown -r now
-  async: 0
+  shell: sleep 2 && shutdown -r now
+  async: 1
   poll: 0
   ignore_errors: yes
   become: yes
-  notify: wait for host to come back
 
 - name: wait for host to come back
   local_action:
@@ -14,5 +13,5 @@
     port: '{{ hostvars[inventory_hostname].get("ansible_ssh_port", 22) }}'
     state: started
     delay: 10
-    timeout: 300
+    timeout: 60
   become: no
