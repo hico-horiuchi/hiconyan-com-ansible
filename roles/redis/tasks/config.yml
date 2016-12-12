@@ -13,4 +13,10 @@
   template:
     src: redis.conf.j2
     dest: /etc/redis/redis.conf
-  notify: restart redis container
+  register: create_redis_conf
+
+- name: stop and remove redis container
+  docker_container:
+    name: redis
+    state: absent
+  when: create_redis_conf|changed
