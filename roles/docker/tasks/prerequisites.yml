@@ -3,17 +3,13 @@
   command: uname -r
   register: get_kernel_release
 
-- name: install apt-transport-https
+- name: install required packages
   apt:
-    name: apt-transport-https
-
-- name: install ca-certificates
-  apt:
-    name: ca-certificates
-
-- name: install recommended package
-  apt:
-    name: linux-image-extra-{{ get_kernel_release.stdout }}
+    name: '{{ item }}'
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - linux-image-extra-{{ get_kernel_release.stdout }}
 
 - name: add new gpg key
   apt_key:
