@@ -13,8 +13,7 @@
 
 - name: add new gpg key
   apt_key:
-    keyserver: hkp://p80.pool.sks-keyservers.net:80
-    id: 58118E89F3A912897C070ADBF76221572C52609D
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
 
 - name: create docker.list
   template:

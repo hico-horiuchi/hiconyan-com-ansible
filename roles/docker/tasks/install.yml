@@ -1,7 +1,7 @@
 ---
-- name: install docker
+- name: install docker community edition
   apt:
-    name: docker-engine
+    name: docker-ce
   notify:
     - restart host
     - wait for host to come back

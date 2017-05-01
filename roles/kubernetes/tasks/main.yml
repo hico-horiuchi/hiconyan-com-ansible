@@ -1,0 +1,8 @@
+---
+- include: prerequisites.yml
+  become: yes
+  tags: kubernetes_prerequisites
+
+- include: install.yml
+  become: yes
+  tags: kubernetes_install

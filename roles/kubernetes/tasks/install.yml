@@ -1,0 +1,15 @@
+---
+- name: install kubernetes
+  apt:
+    name: '{{ item }}'
+  with_items:
+    - kubelet
+    - kubeadm
+    - kubectl
+    - kubernetes-cni
+
+- name: start and enable kubelet daemon
+  service:
+    name: kubelet
+    state: started
+    enabled: yes

@@ -1,0 +1,15 @@
+---
+- name: add new gpg key
+  apt_key:
+    url: 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
+
+- name: create kubernetes.list
+  template:
+    src: kubernetes.list.j2
+    dest: /etc/apt/sources.list.d/kubernetes.list
+  register: create_kubernetes_list
+
+- name: update apt package index
+  apt:
+    update_cache: yes
+  when: create_kubernetes_list|changed

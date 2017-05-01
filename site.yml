@@ -15,26 +15,34 @@
   tags:
     - docker
 
-- name: dokku
+- name: kubernetes
   hosts:
     - conoha
   roles:
-    - dokku
+    - kubernetes
   tags:
-    - dokku
+    - kubernetes
 
-- name: redis
-  hosts:
-    - conoha
-  roles:
-    - redis
-  tags:
-    - redis
+# - name: dokku
+#   hosts:
+#     - conoha
+#   roles:
+#     - dokku
+#   tags:
+#     - dokku
 
-- name: mackerel
-  hosts:
-    - conoha
-  roles:
-    - mackerel
-  tags:
-    - mackerel
+# - name: redis
+#   hosts:
+#     - conoha
+#   roles:
+#     - redis
+#   tags:
+#     - redis
+
+# - name: mackerel
+#   hosts:
+#     - conoha
+#   roles:
+#     - mackerel
+#   tags:
+#     - mackerel
