@@ -7,13 +7,19 @@
 
 #### Preparations
 
-    $ brew install ansible git
+    $ brew install git
+    $ easy_install pip
+    $ pip install virtualenv
     $ sudo gem install bundler
     $ git clone git@github.com:hico-horiuchi/hiconyan-com-ansible.git
 
 #### Ansible
 
     $ cd hiconyan-com-ansible
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ pip install -r requirements.txt
+    $ rehash
     $ cp hosts_samples/hosts.conoha hosts
     $ vi ~/.vault_password
     $ ansible-playbook -i hosts site.yml
