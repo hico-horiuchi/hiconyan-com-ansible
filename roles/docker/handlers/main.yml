@@ -15,3 +15,9 @@
     delay: 10
     timeout: 60
   become: no
+
+- name: restart docker daemon
+  service:
+    name: docker
+    state: restarted
+  become: yes
