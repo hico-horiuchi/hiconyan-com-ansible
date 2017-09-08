@@ -19,7 +19,7 @@ describe service('nginx') do
 end
 
 describe command('ufw status | grep Nginx\ Full') do
-  its(:stdout) { should match /^Nginx Full\s+ALLOW\s+Anywhere$/ }
+  its(:stdout) { should match /Nginx Full\s+ALLOW\s+Anywhere/ }
   its(:exit_status) { should eq 0 }
 end
 

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
-describe group('docker') do
+describe user('ninja') do
   it { should exist }
-end
-
-describe user(ENV['TARGET_USER']) do
   it { should belong_to_group 'docker' }
+  it { should have_login_shell '/bin/bash' }
 end

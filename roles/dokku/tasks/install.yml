@@ -4,4 +4,4 @@
     name: dokku
 
 - name: install core plugins with dependencies
-  command: dokku plugin:install-dependencies --core
+  shell: dokku plugin:install-dependencies --core

@@ -5,9 +5,9 @@
   failed_when: check_plugin_is_installed.rc != 0 and check_plugin_is_installed.rc != 1
 
 - name: install {{ item.name }} plugin
-  command: 'dokku plugin:install {{ item.url }}'
+  shell: 'dokku plugin:install {{ item.url }}'
   when: check_plugin_is_installed.rc == 1
 
 - name: update {{ item.name }} plugin
-  command: 'dokku plugin:update {{ item.name }}'
+  shell: 'dokku plugin:update {{ item.name }}'
   when: check_plugin_is_installed.rc == 0

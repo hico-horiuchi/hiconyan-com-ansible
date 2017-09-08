@@ -1,0 +1,12 @@
+---
+- name: allow running sudo with no password
+  lineinfile:
+    path: /etc/sudoers
+    line: '{{ ansible_env.USER }} ALL=(ALL) NOPASSWD:ALL'
+
+- name: add you to sudo group
+  user:
+    name: '{{ ansible_env.USER }}'
+    groups: sudo
+    append: yes
+  when: ansible_env.USER != 'root'

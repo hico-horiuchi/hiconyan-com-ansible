@@ -3,6 +3,10 @@
   become: yes
   tags: common_hostname
 
+- include: timezone.yml
+  become: yes
+  tags: common_timezone
+
 - include: apt.yml
   become: yes
   tags: common_apt

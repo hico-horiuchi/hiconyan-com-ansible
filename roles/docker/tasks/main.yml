@@ -7,6 +7,10 @@
   become: yes
   tags: docker_install
 
+- include: api.yml
+  become: yes
+  tags: docker_api
+
 - include: python.yml
   become: yes
   tags: docker_python

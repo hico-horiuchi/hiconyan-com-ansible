@@ -1,0 +1,36 @@
+---
+- name: install nginx
+  apt:
+    name: nginx
+
+- name: allow nginx full
+  ufw:
+    rule: allow
+    name: Nginx Full
+
+- name: copy nginx.conf
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: remove default nginx site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: create letsencrypt nginx site
+  template:
+    src: letsencrypt.j2
+    dest: /etc/nginx/sites-enabled/letsencrypt
+
+- name: create hackathon nginx site
+  template:
+    src: hackathon.j2
+    dest: /etc/nginx/sites-enabled/hackathon
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes
+  become: yes

@@ -12,5 +12,5 @@
   register: update_all_packages
 
 - name: cleanup package caches
-  command: apt-get clean
+  shell: apt-get clean
   when: update_all_packages|changed

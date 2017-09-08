@@ -1,0 +1,4 @@
+---
+- name: set timezone to Asia/Tokyo
+  shell: timedatectl set-timezone Asia/Tokyo
+  become: yes

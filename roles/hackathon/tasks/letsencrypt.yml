@@ -1,0 +1,22 @@
+---
+# https://gist.github.com/mattiaslundberg/ba214a35060d3c8603e9b1ec8627d349
+- include_vars: secret.yml
+
+- name: install letsencrypt
+  apt:
+    name: letsencrypt
+
+- name: create letsencrypt directory
+  file:
+    path: /var/www/letsencrypt
+    state: directory
+
+- name: create letsencrypt certificate
+  shell: 'letsencrypt certonly -n -m {{ letsencrypt_email }} --agree-tos -d {{ inventory_hostname }} --webroot -w /var/www/letsencrypt'
+  args:
+    creates: '/etc/letsencrypt/live/{{ inventory_hostname }}'
+
+- name: generate dhparams
+  shell: openssl dhparam -out /etc/nginx/dhparams.pem 2048
+  args:
+    creates: /etc/nginx/dhparams.pem

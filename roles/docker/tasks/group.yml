@@ -3,7 +3,7 @@
   group:
     name: docker
 
-- name: add your user to docker group
+- name: add you to docker group
   user:
     name: '{{ ansible_env.USER }}'
     groups: docker

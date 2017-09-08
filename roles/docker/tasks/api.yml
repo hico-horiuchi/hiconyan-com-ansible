@@ -1,0 +1,18 @@
+---
+- name: enable docker api
+  replace:
+    path: /lib/systemd/system/docker.service
+    regexp: 'ExecStart=/usr/bin/dockerd -H fd://$'
+    replace: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:{{ docker_api_port }}'
+  register: enable_docker_api
+
+- name: reload systemd manager configuration
+  shell: systemctl daemon-reload
+  when: enable_docker_api|changed
+  notify: restart docker daemon
+
+- name: allow docker api
+  ufw:
+    rule: allow
+    port: '{{ docker_api_port }}'
+    proto: tcp

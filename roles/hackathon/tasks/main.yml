@@ -1,0 +1,20 @@
+---
+- include: user.yml
+  become: yes
+  tags: hackathon_user
+
+- include: sudo.yml
+  become: yes
+  tags: hackathon_sudo
+
+- include: nginx.yml
+  become: yes
+  tags: hackathon_nginx
+
+- include: letsencrypt.yml
+  become: yes
+  tags: hackathon_letsencrypt
+
+- include: cleanup.yml
+  become: yes
+  tags: hackathon_cleanup

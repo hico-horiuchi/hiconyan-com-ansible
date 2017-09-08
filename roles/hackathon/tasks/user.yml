@@ -1,0 +1,15 @@
+---
+- include_vars: secret.yml
+
+- name: change your password
+  user:
+    name: '{{ ansible_env.USER }}'
+    password: '{{ ubuntu_password }}'
+
+- name: create ninja user and add to docker group
+  user:
+    name: ninja
+    password: '{{ ninja_password }}'
+    groups: docker
+    append: yes
+    shell: /bin/bash

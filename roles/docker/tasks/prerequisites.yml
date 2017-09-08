@@ -1,6 +1,6 @@
 ---
 - name: get kernel release
-  command: uname -r
+  shell: uname -r
   register: get_kernel_release
 
 - name: install required packages
