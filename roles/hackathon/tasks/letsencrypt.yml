@@ -11,7 +11,7 @@
     path: /var/www/letsencrypt
     state: directory
 
-- name: create letsencrypt certificate
+- name: create letsencrypt certification
   shell: 'letsencrypt certonly -n -m {{ letsencrypt_email }} --agree-tos -d {{ inventory_hostname }} --webroot -w /var/www/letsencrypt'
   args:
     creates: '/etc/letsencrypt/live/{{ inventory_hostname }}'
@@ -20,3 +20,9 @@
   shell: openssl dhparam -out /etc/nginx/dhparams.pem 2048
   args:
     creates: /etc/nginx/dhparams.pem
+
+- name: add cronjob for letsencrypt certification renewal
+  cron:
+    name: letsencrypt certification renewal
+    special_time: weekly
+    job: 'letsencrypt renew && service nginx reload'
