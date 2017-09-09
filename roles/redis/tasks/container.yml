@@ -1,10 +1,11 @@
 ---
-- name: start redis container
+- name: recreate redis container
   docker_container:
     name: redis
     image: redis
     state: started
     restart_policy: always
+    recreate: yes
     shell: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - '6379:6379'

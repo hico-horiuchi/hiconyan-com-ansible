@@ -48,3 +48,27 @@
     - hackathon
   tags:
     - hackathon
+
+- name: influxdb
+  hosts:
+    - cloudn[0]
+  roles:
+    - influxdb
+  tags:
+    - influxdb
+
+- name: chronograf
+  hosts:
+    - cloudn[0]
+  roles:
+    - chronograf
+  tags:
+    - chronograf
+
+- name: telegraf
+  hosts:
+    - cloudn
+  roles:
+    - telegraf
+  tags:
+    - telegraf

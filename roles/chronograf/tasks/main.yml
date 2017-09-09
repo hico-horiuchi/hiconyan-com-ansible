@@ -1,0 +1,8 @@
+---
+- include: container.yml
+  become: yes
+  tags: chronograf_container
+
+- include: ufw.yml
+  become: yes
+  tags: chronograf_ufw

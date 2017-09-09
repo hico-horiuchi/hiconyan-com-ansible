@@ -1,0 +1,8 @@
+---
+- include: config.yml
+  become: yes
+  tags: telegraf_config
+
+- include: container.yml
+  become: yes
+  tags: telegraf_container

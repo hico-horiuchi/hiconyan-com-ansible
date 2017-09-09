@@ -1,0 +1,6 @@
+---
+- name: allow influxdb port
+  ufw:
+    rule: allow
+    port: 8086
+    proto: tcp

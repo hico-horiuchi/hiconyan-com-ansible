@@ -1,0 +1,13 @@
+---
+- name: allow chronograf port
+  ufw:
+    rule: allow
+    port: 8888
+    proto: tcp
+
+- name: allow chronograf port
+  ufw:
+    rule: allow
+    port: 10000
+    proto: tcp
+    delete: yes

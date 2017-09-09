@@ -1,0 +1,11 @@
+---
+- name: recreate telegraf container
+  docker_container:
+    name: telegraf
+    image: telegraf
+    state: started
+    restart_policy: always
+    recreate: yes
+    volumes:
+      - '/etc/docker/telegraf:/etc/telegraf:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'

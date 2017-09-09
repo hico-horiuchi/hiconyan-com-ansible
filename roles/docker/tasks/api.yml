@@ -11,7 +11,7 @@
   when: enable_docker_api|changed
   notify: restart docker daemon
 
-- name: allow docker api
+- name: allow docker api port
   ufw:
     rule: allow
     port: '{{ docker_api_port }}'
