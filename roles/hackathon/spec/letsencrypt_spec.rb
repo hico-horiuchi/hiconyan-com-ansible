@@ -19,3 +19,19 @@ describe file('/etc/nginx/dhparams.pem') do
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
 end
+
+describe file('/etc/nginx/sites-enabled/letsencrypt') do
+  it { should be_file }
+  it { should contain "server_name #{ENV['TARGET_HOST']};" }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end
+
+describe file('/etc/nginx/sites-enabled/hackathon') do
+  it { should be_file }
+  it { should contain "server_name #{ENV['TARGET_HOST']};" }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end

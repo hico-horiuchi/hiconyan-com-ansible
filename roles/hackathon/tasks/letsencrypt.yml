@@ -26,3 +26,15 @@
     name: letsencrypt certification renewal
     special_time: weekly
     job: 'letsencrypt renew && service nginx reload'
+
+- name: create letsencrypt nginx site
+  template:
+    src: letsencrypt.j2
+    dest: /etc/nginx/sites-enabled/letsencrypt
+  notify: restart nginx
+
+- name: create hackathon nginx site
+  template:
+    src: hackathon.j2
+    dest: /etc/nginx/sites-enabled/hackathon
+  notify: restart nginx
