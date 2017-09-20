@@ -1,5 +1,7 @@
 require 'spec_helper'
 
-describe user(ENV['TARGET_USER']) do
-  it { should belong_to_group 'sudo' }
+unless ENV['TARGET_USER'] == 'root'
+  describe user(ENV['TARGET_USER']) do
+    it { should belong_to_group 'sudo' }
+  end
 end

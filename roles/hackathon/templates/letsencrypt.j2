@@ -1,8 +1,7 @@
-server_tokens off;
-
 server {
     listen 80 default_server;
     server_name {{ inventory_hostname }};
+    server_tokens off;
 
     location /.well-known/acme-challenge {
         root /var/www/letsencrypt;

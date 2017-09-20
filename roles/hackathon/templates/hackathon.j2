@@ -1,7 +1,3 @@
-add_header X-Frame-Options SAMEORIGIN;
-add_header X-Content-Type-Options nosniff;
-add_header X-XSS-Protection "1; mode=block";
-
 server {
     listen 443 ssl default deferred;
     server_name {{ inventory_hostname }};
@@ -21,6 +17,10 @@ server {
 
     ssl_dhparam /etc/nginx/dhparams.pem;
     ssl_prefer_server_ciphers on;
+
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
 
     location ~ ^/(?<forward_port>808\d)/ {
         rewrite ^/808\d/(?<request_path>.*)$ /$request_path? break;

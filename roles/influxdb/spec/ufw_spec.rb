@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe command("ufw status | grep 8086/tcp") do
+describe command('ufw status | grep 8086/tcp') do
   its(:stdout) { should match /8086\/tcp\s+ALLOW\s+Anywhere/ }
   its(:exit_status) { should eq 0 }
 end

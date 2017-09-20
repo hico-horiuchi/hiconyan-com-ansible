@@ -11,6 +11,18 @@
     path: /var/www/letsencrypt
     state: directory
 
+- name: create letsencrypt nginx site
+  template:
+    src: letsencrypt.j2
+    dest: /etc/nginx/sites-enabled/letsencrypt
+  register: create_letsencrypt_nginx_site
+
+- name: restart nginx immediately
+  service:
+    name: nginx
+    state: restarted
+  when: create_letsencrypt_nginx_site|changed
+
 - name: create letsencrypt certification
   shell: 'letsencrypt certonly -n -m {{ letsencrypt_email }} --agree-tos -d {{ inventory_hostname }} --webroot -w /var/www/letsencrypt'
   args:
@@ -26,12 +38,6 @@
     name: letsencrypt certification renewal
     special_time: weekly
     job: 'letsencrypt renew && service nginx reload'
-
-- name: create letsencrypt nginx site
-  template:
-    src: letsencrypt.j2
-    dest: /etc/nginx/sites-enabled/letsencrypt
-  notify: restart nginx
 
 - name: create hackathon nginx site
   template:

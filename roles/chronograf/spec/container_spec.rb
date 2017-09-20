@@ -12,8 +12,7 @@ describe docker_image('chronograf') do
 end
 
 describe docker_container('chronograf') do
-  its(['HostConfig.NetworkMode']) { should eq property['docker_network'] }
-  its(['HostConfig.PortBindings.10000/tcp']) { should eq [{ 'HostIp' => '0.0.0.0', 'HostPort' => '10000'}] }
+  its(['HostConfig.PortBindings.8888/tcp']) { should eq [{ 'HostIp' => '0.0.0.0', 'HostPort' => '8888'}] }
   it { should exist }
   it { should be_running }
   it { should have_volume('/var/lib/chronograf', '/var/docker/chronograf') }

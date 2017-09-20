@@ -12,7 +12,6 @@ describe docker_image('influxdb') do
 end
 
 describe docker_container('influxdb') do
-  its(['HostConfig.NetworkMode']) { should eq property['docker_network'] }
   its(['HostConfig.PortBindings.8086/tcp']) { should eq [{ 'HostIp' => '0.0.0.0', 'HostPort' => '8086'}] }
   it { should exist }
   it { should be_running }

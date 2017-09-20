@@ -14,6 +14,12 @@ describe command('ufw status | grep Nginx\ Full') do
   its(:exit_status) { should eq 0 }
 end
 
+%w(80 443).each do |item|
+  describe port(item) do
+    it {  should be_listening.on('0.0.0.0').with('tcp') }
+  end
+end
+
 describe file('/etc/nginx/nginx.conf') do
   it { should be_file }
   it { should be_mode 644 }
