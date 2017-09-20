@@ -1,10 +1,12 @@
 ---
 - include_vars: secret.yml
+  tags: hackathon_user_change_your_password
 
 - name: change your password
   user:
     name: '{{ ansible_env.USER }}'
     password: '{{ ubuntu_password }}'
+  tags: hackathon_user_change_your_password
 
 - name: create ninja user and add to docker group
   user:
