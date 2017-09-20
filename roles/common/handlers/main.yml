@@ -4,3 +4,8 @@
     name: ssh
     state: restarted
   become: yes
+
+- name: restart journald
+  service:
+    name: systemd-journald
+    state: restarted

@@ -1,0 +1,8 @@
+---
+# https://serverfault.com/questions/809093/how-do-view-older-journalctl-logs-after-a-rotation-maybe
+- name: enable persistent logging
+  replace:
+    path: /etc/systemd/journald.conf
+    regexp: '#Storage=auto'
+    replace: 'Storage=persistent'
+  notify: restart journald
