@@ -1,20 +1,20 @@
 ---
-- include: user.yml
+- include_tasks: user.yml
   become: yes
   tags: hackathon_user
 
-- include: sudo.yml
+- include_tasks: sudo.yml
   become: yes
   tags: hackathon_sudo
 
-- include: nginx.yml
+- include_tasks: nginx.yml
   become: yes
   tags: hackathon_nginx
 
-- include: letsencrypt.yml
+- include_tasks: letsencrypt.yml
   become: yes
   tags: hackathon_letsencrypt
 
-- include: cleanup.yml
+- include_tasks: cleanup.yml
   become: yes
   tags: hackathon_cleanup

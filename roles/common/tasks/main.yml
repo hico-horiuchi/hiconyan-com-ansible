@@ -1,24 +1,24 @@
 ---
-- include: hostname.yml
+- include_tasks: hostname.yml
   become: yes
   tags: common_hostname
 
-- include: timezone.yml
+- include_tasks: timezone.yml
   become: yes
   tags: common_timezone
 
-- include: journald.yml
+- include_tasks: journald.yml
   become: yes
   tags: common_journald
 
-- include: apt.yml
+- include_tasks: apt.yml
   become: yes
   tags: common_apt
 
-- include: ssh.yml
+- include_tasks: ssh.yml
   become: yes
   tags: common_ssh
 
-- include: ufw.yml
+- include_tasks: ufw.yml
   become: yes
   tags: common_ufw

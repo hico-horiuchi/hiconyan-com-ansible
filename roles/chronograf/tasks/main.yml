@@ -1,8 +1,8 @@
 ---
-- include: container.yml
+- include_tasks: container.yml
   become: yes
   tags: chronograf_container
 
-- include: ufw.yml
+- include_tasks: ufw.yml
   become: yes
   tags: chronograf_ufw
