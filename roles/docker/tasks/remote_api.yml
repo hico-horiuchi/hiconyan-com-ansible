@@ -1,0 +1,28 @@
+---
+# http://docs.docker.jp/engine/articles/https.html
+- name: copy ca and server keys
+  copy:
+    src: '{{ item }}'
+    dest: '/etc/docker/{{ item }}'
+  with_items:
+    - ca.pem
+    - server-cert.pem
+    - server-key.pem
+
+- name: enable docker remote api
+  replace:
+    path: /lib/systemd/system/docker.service
+    regexp: 'ExecStart=/usr/bin/dockerd -H fd://$'
+    replace: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:{{ docker_remote_api_port }} --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server-cert.pem --tlskey=/etc/docker/server-key.pem'
+  register: enable_docker_remote_api
+
+- name: reload systemd manager configuration
+  shell: systemctl daemon-reload
+  when: enable_docker_remote_api|changed
+  notify: restart docker daemon
+
+- name: allow docker remote api port
+  ufw:
+    rule: allow
+    port: '{{ docker_remote_api_port }}'
+    proto: tcp

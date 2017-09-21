@@ -7,9 +7,9 @@
   become: yes
   tags: docker_install
 
-- include_tasks: api.yml
+- include_tasks: remote_api.yml
   become: yes
-  tags: docker_api
+  tags: docker_remote_api
 
 - include_tasks: python.yml
   become: yes

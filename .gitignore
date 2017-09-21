@@ -5,6 +5,7 @@
 .DS_Store
 /.bundle
 /hosts
+/roles/docker/files/*.pem
 /vendor/bin
 /vendor/bundler
 /venv
