@@ -1,8 +1,8 @@
 ---
-- include_tasks: container.yml
+- include: container.yml
   become: yes
   tags: influxdb_container
 
-- include_tasks: ufw.yml
+- include: ufw.yml
   become: yes
   tags: influxdb_ufw

@@ -1,17 +1,17 @@
 ---
-- include_tasks: prerequisites.yml
+- include: prerequisites.yml
   become: yes
   tags: dokku_prerequisites
 
-- include_tasks: install.yml
+- include: install.yml
   become: yes
   tags: dokku_install
 
-- include_tasks: plugin.yml
+- include: plugin.yml
   become: yes
   with_items: '{{ dokku_plugins }}'
   tags: dockku_plugin
 
-- include_tasks: nginx.yml
+- include: nginx.yml
   become: yes
   tags: dokku_nginx

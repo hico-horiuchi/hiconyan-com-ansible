@@ -1,12 +1,12 @@
 ---
-- include_tasks: prerequisites.yml
+- include: prerequisites.yml
   become: yes
   tags: mackerel_prerequisites
 
-- include_tasks: install.yml
+- include: install.yml
   become: yes
   tags: mackerel_install
 
-- include_tasks: config.yml
+- include: config.yml
   become: yes
   tags: mackerel_config

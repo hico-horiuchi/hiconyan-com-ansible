@@ -1,12 +1,12 @@
 ---
-- include_tasks: config.yml
+- include: config.yml
   become: yes
   tags: redis_config
 
-- include_tasks: container.yml
+- include: container.yml
   become: yes
   tags: redis_container
 
-- include_tasks: ufw.yml
+- include: ufw.yml
   become: yes
   tags: redis_ufw
