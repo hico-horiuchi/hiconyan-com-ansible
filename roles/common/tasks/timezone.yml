@@ -1,4 +1,4 @@
 ---
-- name: set timezone to Asia/Tokyo
-  shell: timedatectl set-timezone Asia/Tokyo
+- name: set timezone to {{ timezone }}
+  shell: 'timedatectl set-timezone {{ timezone }}'
   become: yes

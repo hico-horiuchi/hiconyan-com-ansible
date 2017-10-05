@@ -10,13 +10,15 @@ describe port(22) do
   it { should be_listening.on('::').with('tcp6') }
 end
 
-# describe file('/etc/ssh/sshd_config') do
-#   it { should be_file }
-#   its(:content) { should match /^PasswordAuthentication no$/ }
-#   it { should be_mode 644 }
-#   it { should be_owned_by 'root' }
-#   it { should be_grouped_into 'root' }
-# end
+if property['ssh_disable_password_auth']
+  describe file('/etc/ssh/sshd_config') do
+    it { should be_file }
+    its(:content) { should match /^PasswordAuthentication no$/ }
+    it { should be_mode 644 }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+  end
+end
 
 describe command('ufw status | grep OpenSSH') do
   its(:stdout) { should match /OpenSSH\s+ALLOW\s+Anywhere/ }

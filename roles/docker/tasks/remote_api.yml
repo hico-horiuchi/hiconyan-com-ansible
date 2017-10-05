@@ -8,12 +8,22 @@
     - ca.pem
     - server-cert.pem
     - server-key.pem
+  when: docker_enable_tls_verify
 
 - name: enable docker remote api
   replace:
     path: /lib/systemd/system/docker.service
     regexp: 'ExecStart=/usr/bin/dockerd -H fd://$'
+    replace: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:{{ docker_remote_api_port }}'
+  when: not docker_enable_tls_verify
+  register: enable_docker_remote_api
+
+- name: enable docker remote api with tls verify
+  replace:
+    path: /lib/systemd/system/docker.service
+    regexp: 'ExecStart=/usr/bin/dockerd -H fd://$'
     replace: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:{{ docker_remote_api_port }} --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server-cert.pem --tlskey=/etc/docker/server-key.pem'
+  when: docker_enable_tls_verify
   register: enable_docker_remote_api
 
 - name: reload systemd manager configuration
